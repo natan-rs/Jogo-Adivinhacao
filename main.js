@@ -11,15 +11,26 @@ let xAttempts = 1
 // Eventos
 btnTry.addEventListener('click', handleTryClick)
 btnReset.addEventListener('click', handleResetClick)
+document.addEventListener('keydown', enterEvent)
 
 
 // Funções 
 function handleTryClick(event) {
-  event.preventDefault()
+  event.preventDefault() // não enviar o formulário
 
-  const inputNumber = document.querySelector('#inputNumber')
+  let inputNumber = document.querySelector('#inputNumber')
 
-  if (Number(inputNumber.value) == randomNumber) {
+  if(inputNumber.value < 0 || inputNumber.value > 10) {
+    alert("Escolha um número entre 0 e 10!")
+    return
+  }
+
+  if(inputNumber.value == "") {
+    alert("Você precisa colocar um número!")
+    return
+  }
+
+  if(inputNumber.value == randomNumber) {
     toggleScreen()
     document.querySelector('.screen2 h2').innerText = `Acertou em ${xAttempts} tentativas`
   }
@@ -36,4 +47,10 @@ function handleResetClick() {
 function toggleScreen() {
   screen1.classList.toggle('hide')
   screen2.classList.toggle('hide')
+}
+
+function enterEvent(k) {
+  if(k.key == 'Enter' && screen1.classList.contains('hide')) {
+    handleResetClick()
+  }
 }
