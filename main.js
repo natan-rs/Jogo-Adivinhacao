@@ -4,8 +4,8 @@ const screen2 = document.querySelector('.screen2')
 const btnTry = document.querySelector('#btnTry')
 const btnReset = document.querySelector('#btnReset')
 
-let randomNumber = Math.round(Math.random() * 10)
-let xAttempts = 1
+let randomNumber = Math.round(Math.random() * 10) // gerando um número entre 0 e 10
+let xAttempts = 1 // contador de tentativas
 
 
 // Eventos
@@ -36,7 +36,7 @@ function handleTryClick(event) {
   }
 
   inputNumber.value = ''
-  xAttempts++
+  xAttempts++ // adicionando mais uma tentativa
 }
 
 function handleResetClick() {
